@@ -25,17 +25,13 @@ Tu peux utiliser les deux en parallèle si ça t'arrange : voir la FAQ du README
 Lightroom Sync/
   At each start/
     README.md, README.fr.md      <- documentation complete (a lire en premier)
-    start-lightroom.bat          <- script generique, a configurer (CATALOG)
-    my config/
-      start-lightroom-perso.bat  <- exemple de copie deja configuree
+    start-lightroom.bat          <- edite CATALOG avant usage, puis place-le pres de ton catalogue
   On demand/
     README.md, README.fr.md      <- documentation de ce qui differe
-    sync-catalog.bat             <- script generique, a configurer (CATALOG)
-    my config/
-      sync-catalog-perso.bat     <- exemple de copie deja configuree
+    sync-catalog.bat             <- edite CATALOG avant usage, puis place-le pres de ton catalogue
 ```
 
-Chaque dossier `my config` n'est qu'un exemple de script avec `CATALOG` déjà rempli : copie le `.bat` générique à côté, édite toi-même la ligne `CATALOG`, et utilise cette copie.
+Chaque script regroupe ses variables configurables en haut : ouvre-le dans un éditeur de texte, règle `CATALOG` sur le nom de ton catalogue, enregistre, et place-le dans ton dossier Lightroom.
 
 ## Licence
 

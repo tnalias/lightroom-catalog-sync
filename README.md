@@ -25,17 +25,13 @@ You can use both at once if it suits you: see the FAQ in the [`On demand`](On%20
 Lightroom Sync/
   At each start/
     README.md, README.fr.md      <- full documentation (read this first)
-    start-lightroom.bat          <- generic script, edit CATALOG before use
-    my config/
-      start-lightroom-perso.bat  <- example of an already-configured copy
+    start-lightroom.bat          <- edit CATALOG before use, then place next to your catalog
   On demand/
     README.md, README.fr.md      <- documentation of what differs
-    sync-catalog.bat             <- generic script, edit CATALOG before use
-    my config/
-      sync-catalog-perso.bat     <- example of an already-configured copy
+    sync-catalog.bat             <- edit CATALOG before use, then place next to your catalog
 ```
 
-Each `my config` folder is just an example of a script with `CATALOG` already filled in: copy the generic `.bat` next to it, edit the `CATALOG` line yourself, and use that copy.
+Each script has its configurable variables grouped at the top: open it in a text editor, set `CATALOG` to your catalog's name, save, and place it in your Lightroom folder.
 
 ## License
 
