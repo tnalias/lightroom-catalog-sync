@@ -2,7 +2,7 @@
 
 [English](README.md) | **Français**
 
-Ce document accompagne le projet principal (voir le [README](../At%20each%20start/README.fr.md) pour tout le contexte : le problème, pourquoi les outils de sync corrompent les catalogues Lightroom, l'architecture à dossier relais et le transport en `.7z`). Lis-le d'abord si ce n'est pas fait.
+Ce document accompagne le projet. Voir le [README racine](../README.fr.md) pour tout le contexte (le problème, pourquoi les outils de sync corrompent les catalogues Lightroom, et la justification du transport en `.7z`), et le README de [`At each start`](../At%20each%20start/README.fr.md) pour l'architecture à dossier relais et le déroulé détaillé de l'installation. Lis ces deux documents d'abord si ce n'est pas fait.
 
 ## Quand choisir cette variante plutôt que `start-lightroom.bat`
 
@@ -49,16 +49,9 @@ Le garde : chaque envoi réussi écrit un fichier témoin (`last-sync-state.txt`
 
 Les fichiers d'état ne sont écrits que si l'opération se termine **sans aucune erreur** : un envoi partiel n'est jamais enregistré comme version valide du relais.
 
-## Tout ce qui est hérité du script principal
+## Tout ce qui est hérité de `start-lightroom.bat`
 
-Même structure de dossiers, mêmes prérequis (7-Zip, même nom de catalogue partout), même installation que `start-lightroom.bat` (voir le [README](../At%20each%20start/README.fr.md) principal), et les mêmes mécanismes de sécurité :
-
-- La récupération n'est jamais destructive : elle n'écrase jamais un fichier local plus récent et ne supprime jamais rien en local.
-- Chaque archive est testée en intégrité avant extraction (récupération) et avant envoi (envoi).
-- Une sauvegarde de sécurité horodatée de `.lrcat` + `.lrcat-data` est faite avant chaque récupération (`_CrashBackups`, les 2 plus récentes conservées, réglable via `BACKUPS_KEEP`).
-- Détection agrégée des problèmes : toute anomalie transforme le message final en avertissement explicite au lieu du message de succès.
-- Garde-fous au démarrage : refuse de tourner si Lightroom est ouvert, si le catalogue est absent, ou si 7-Zip est introuvable.
-- ASCII pur, aucune sous-routine `call :label` (seulement deux `goto` simples pour le branchement du menu, exécutés avant toute activité disque).
+Même structure de dossiers, mêmes prérequis, et les mêmes mécanismes de sécurité (récupération non destructive, tests d'intégrité des archives, sauvegardes anti-crash, détection agrégée des erreurs, garde-fous au démarrage) que `start-lightroom.bat`, tous détaillés dans le [README racine](../README.fr.md), non répétés ici. L'installation suit la même structure de dossiers et le même principe, détaillée plus bas et renvoyant au README de [`At each start`](../At%20each%20start/README.fr.md) là où les étapes sont identiques.
 
 ## Installation
 
@@ -66,7 +59,7 @@ Mêmes dossiers que `start-lightroom.bat` (`_NoSync_WorkingFiles` + `_SyncedCopy
 
 **Sur le premier PC (celui qui a déjà le catalogue) :**
 1. Édite `CATALOG` dans `sync-catalog.bat` (voir [Configuration](#configuration) plus bas).
-2. Place `sync-catalog.bat` dans ton dossier Lightroom. Lightroom fermé, crée `_NoSync_WorkingFiles` et déplace-y le `.lrcat` et ses 4 dossiers compagnons, exactement comme décrit aux étapes 3-5 de l'installation du README principal.
+2. Place `sync-catalog.bat` dans ton dossier Lightroom. Lightroom fermé, crée `_NoSync_WorkingFiles` et déplace-y le `.lrcat` et ses 4 dossiers compagnons, exactement comme décrit aux étapes 3-5 de l'installation du README `At each start`.
 3. Lance `sync-catalog.bat`, choisis **[1] Envoyer** (ça crée `_SyncedCopy` au premier lancement et y pousse le contenu).
 4. Dans ton outil de sync, active la synchro sélective sur **uniquement** `_SyncedCopy`.
 5. Attends que la synchro remonte complètement avant de passer au PC suivant.
@@ -92,7 +85,7 @@ La configuration tient en 2-3 variables en haut de `sync-catalog.bat` :
 
 ## Épingler le script
 
-Même méthode que pour `start-lightroom.bat` : voir [Épingler le script à la barre des tâches](../At%20each%20start/README.fr.md#épingler-le-script-à-la-barre-des-tâches) dans le README principal. Seule différence : pointe la Cible du raccourci vers `sync-catalog.bat` à la place :
+Même méthode que pour `start-lightroom.bat` : voir [Épingler un script à la barre des tâches](../README.fr.md#épingler-un-script-à-la-barre-des-tâches) dans le README racine. Seule différence : pointe la Cible du raccourci vers `sync-catalog.bat` à la place :
 ```
 C:\Windows\System32\cmd.exe /c "C:\chemin\vers\ton\dossier\Lightroom\sync-catalog.bat"
 ```
@@ -110,4 +103,4 @@ Oui, les deux scripts partagent les mêmes dossiers et archives et peuvent coexi
 
 ## Licence
 
-Même licence MIT que le projet principal (voir le [README](../At%20each%20start/README.fr.md)).
+Même licence MIT que le reste du projet (voir le [README racine](../README.fr.md)).

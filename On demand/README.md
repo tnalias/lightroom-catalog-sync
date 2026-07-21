@@ -2,7 +2,7 @@
 
 **English** | [Français](README.fr.md)
 
-This is a companion to the main project (see [README](../At%20each%20start/README.md) for the full context: the problem, why sync tools corrupt Lightroom catalogs, the relay folder architecture, and the `.7z` transport). Read that first if you have not.
+This is a companion to the project. See the [top-level README](../README.md) for the full context (the problem, why sync tools corrupt Lightroom catalogs, and the `.7z` transport rationale), and the [`At each start`](../At%20each%20start/README.md) README for the relay-folder architecture and the detailed installation walkthrough. Read those first if you have not.
 
 ## When to use this variant instead of `start-lightroom.bat`
 
@@ -49,16 +49,9 @@ The guard: every successful send writes a witness file (`last-sync-state.txt`) i
 
 State files are only written when an operation completes **without any error**: a partial send is never recorded as a valid relay version.
 
-## Everything inherited from the main script
+## Everything inherited from `start-lightroom.bat`
 
-Same folder structure, same requirements (7-Zip, same catalog name everywhere), same installation as `start-lightroom.bat` (see the main [README](../At%20each%20start/README.md)), and the same safety mechanisms:
-
-- Retrieve is never destructive: it never overwrites a newer local file and never deletes anything locally.
-- Every archive is integrity-tested before extraction (retrieve) and before upload (send).
-- A timestamped safety backup of `.lrcat` + `.lrcat-data` is taken before every retrieve (`_CrashBackups`, 2 most recent kept, adjustable via `BACKUPS_KEEP`).
-- Aggregated error detection: any anomaly turns the final message into an explicit warning instead of a success message.
-- Startup guards: refuses to run if Lightroom is open, the catalog is missing, or 7-Zip is absent.
-- Pure ASCII, no `call :label` subroutines (only two simple `goto` statements for menu branching, executed before any disk activity).
+Same folder structure, same requirements, and the same safety mechanisms (non-destructive retrieve, archive integrity tests, crash-safety backups, aggregated error detection, startup guards) as `start-lightroom.bat`, all detailed in the [top-level README](../README.md), so they are not repeated here. Installation follows the same folders and principle, detailed below and cross-referenced to the [`At each start`](../At%20each%20start/README.md) README where the steps are identical.
 
 ## Installation
 
@@ -66,7 +59,7 @@ Same folders as `start-lightroom.bat` (`_NoSync_WorkingFiles` + `_SyncedCopy`), 
 
 **On the first PC (the one that already has the catalog):**
 1. Edit `CATALOG` in `sync-catalog.bat` (see [Adapting the script](#configuration) below).
-2. Place `sync-catalog.bat` in your Lightroom folder. With Lightroom closed, create `_NoSync_WorkingFiles` and move the `.lrcat` and its 4 companion folders into it, exactly as described in the main README's installation steps 3-5.
+2. Place `sync-catalog.bat` in your Lightroom folder. With Lightroom closed, create `_NoSync_WorkingFiles` and move the `.lrcat` and its 4 companion folders into it, exactly as described in the `At each start` README's installation steps 3-5.
 3. Run `sync-catalog.bat`, choose **[1] Send** (this creates `_SyncedCopy` on first run and pushes into it).
 4. In your sync tool, enable selective sync on **only** `_SyncedCopy`.
 5. Wait for the sync to fully upload before moving to the next PC.
@@ -92,7 +85,7 @@ Configuration is 2-3 variables at the top of `sync-catalog.bat`:
 
 ## Pinning the script
 
-Same method as `start-lightroom.bat`: see [Pinning the script to the taskbar](../At%20each%20start/README.md#pinning-the-script-to-the-taskbar) in the main README. Only difference: point the shortcut's Target at `sync-catalog.bat` instead:
+Same method as `start-lightroom.bat`: see [Pinning a script to the taskbar](../README.md#pinning-a-script-to-the-taskbar) in the top-level README. Only difference: point the shortcut's Target at `sync-catalog.bat` instead:
 ```
 C:\Windows\System32\cmd.exe /c "C:\path\to\your\Lightroom\folder\sync-catalog.bat"
 ```
@@ -110,4 +103,4 @@ Yes, both scripts share the same folders and archives and can coexist. One cavea
 
 ## License
 
-Same MIT license as the main project (see [README](../At%20each%20start/README.md)).
+Same MIT license as the rest of the project (see the [top-level README](../README.md)).
