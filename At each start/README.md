@@ -73,6 +73,12 @@ This PC does not have the catalog yet: it will receive it through sync.
 
 ### What it looks like once set up
 
+By default, Lightroom Classic creates its catalog inside your Windows user's Pictures folder. The `Lightroom\` folder below is typically:
+```
+C:\Users\<YourUsername>\Pictures\Lightroom\
+```
+(On a French-language Windows, this folder displays as "Images" in Explorer, but its underlying name stays `Pictures`.) If your catalog lives somewhere else, that is fine too: the script does not care where this folder is, only that everything below sits inside it.
+
 Concrete example, with a catalog named `CatalogName`:
 
 ```

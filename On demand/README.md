@@ -73,7 +73,7 @@ Same folders as `start-lightroom.bat` (`_NoSync_WorkingFiles` + `_SyncedCopy`), 
 
 ### What it looks like once set up
 
-Concrete example, with a catalog named `CatalogName`:
+By default, Lightroom Classic creates its catalog inside your Windows user's Pictures folder, typically `C:\Users\<YourUsername>\Pictures\Lightroom\` (see the [`At each start`](../At%20each%20start/README.md#what-it-looks-like-once-set-up) README if you need the full note on this). Concrete example, with a catalog named `CatalogName`:
 
 ```
 Lightroom\

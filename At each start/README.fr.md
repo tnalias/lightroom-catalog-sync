@@ -73,6 +73,12 @@ Ce PC ne possède pas encore de catalogue : il va le récupérer via la synchro.
 
 ### À quoi ça ressemble une fois en place
 
+Par défaut, Lightroom Classic crée son catalogue dans le dossier Images de ton utilisateur Windows. Le dossier `Lightroom\` ci-dessous correspond typiquement à :
+```
+C:\Users\<TonNomUtilisateur>\Pictures\Lightroom\
+```
+(Sur un Windows en français, l'Explorateur affiche ce dossier sous le nom "Images", mais son nom réel reste `Pictures`.) Si ton catalogue vit ailleurs, aucun souci non plus : le script ne se soucie pas de l'emplacement de ce dossier, seulement que tout ce qui suit se trouve bien à l'intérieur.
+
 Exemple concret, avec un catalogue nommé `NomCatalogue` :
 
 ```
