@@ -71,6 +71,30 @@ This PC does not have the catalog yet: it will receive it through sync.
 4. Manually copy just the `.lrcat` file from `_SyncedCopy` into `_NoSync_WorkingFiles` (the script requires its presence as a guard before running; the 4 folders will be extracted automatically from the archives on the first pull).
 5. Run `start-lightroom.bat`: the pull extracts the 4 archives into `_NoSync_WorkingFiles`, then Lightroom launches. On this very first opening on this machine, Lightroom does not know this catalog yet: open it through File > Open Catalog, pointing to the `.lrcat` inside `_NoSync_WorkingFiles`. From then on it opens automatically.
 
+### What it looks like once set up
+
+Concrete example, with a catalog named `CatalogName`:
+
+```
+Lightroom\
+  start-lightroom.bat
+  _NoSync_WorkingFiles\
+    CatalogName.lrcat
+    CatalogName.lrcat-data\
+    CatalogName Previews.lrdata\
+    CatalogName Helper.lrdata\
+    CatalogName Sync.lrdata\
+    _CrashBackups\                    <- created automatically, safety copies
+  _SyncedCopy\
+    CatalogName.lrcat
+    CatalogName.lrcat-data.7z
+    CatalogName Previews.lrdata.7z
+    CatalogName Helper.lrdata.7z
+    CatalogName Sync.lrdata.7z
+```
+
+`_NoSync_WorkingFiles` holds the real, loose files Lightroom uses directly: this is where your actual catalog and its 4 companion folders live day to day. `_SyncedCopy` is the only folder your sync tool watches: same `.lrcat`, but the 4 companion folders travel as `.7z` archives instead (see [Why .7z archives](../README.md#why-7z-archives) for the reason). `_CrashBackups` appears on its own inside `_NoSync_WorkingFiles` after the first pull: nothing to create manually there.
+
 ## Adapting the script to your setup
 
 All customizable variables sit together at the top of the script:

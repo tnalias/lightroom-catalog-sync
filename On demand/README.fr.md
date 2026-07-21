@@ -71,6 +71,32 @@ Mêmes dossiers que `start-lightroom.bat` (`_NoSync_WorkingFiles` + `_SyncedCopy
 4. Lance `sync-catalog.bat`, choisis **[2] Récupérer**.
 5. Ouvre Lightroom via Fichier > Ouvrir un catalogue, en pointant vers le `.lrcat` dans `_NoSync_WorkingFiles`. Il s'ouvrira automatiquement par la suite.
 
+### À quoi ça ressemble une fois en place
+
+Exemple concret, avec un catalogue nommé `NomCatalogue` :
+
+```
+Lightroom\
+  sync-catalog.bat
+  _NoSync_WorkingFiles\
+    NomCatalogue.lrcat
+    NomCatalogue.lrcat-data\
+    NomCatalogue Previews.lrdata\
+    NomCatalogue Helper.lrdata\
+    NomCatalogue Sync.lrdata\
+    _CrashBackups\                    <- cree automatiquement, copies de securite
+    _last-pull-state.txt              <- cree automatiquement, trace la derniere version recuperee ici
+  _SyncedCopy\
+    NomCatalogue.lrcat
+    NomCatalogue.lrcat-data.7z
+    NomCatalogue Previews.lrdata.7z
+    NomCatalogue Helper.lrdata.7z
+    NomCatalogue Sync.lrdata.7z
+    last-sync-state.txt               <- cree automatiquement, enregistre qui a envoye en dernier et quand
+```
+
+Même disposition que `start-lightroom.bat` (voir le README de [`At each start`](../At%20each%20start/README.fr.md#à-quoi-ça-ressemble-une-fois-en-place) pour le rôle de chaque dossier) : les deux ajouts ici sont les fichiers témoins dont dépend le garde anti-divergence, tous deux créés et mis à jour automatiquement, jamais à toucher à la main.
+
 ## Configuration
 
 La configuration tient en 2-3 variables en haut de `sync-catalog.bat` :

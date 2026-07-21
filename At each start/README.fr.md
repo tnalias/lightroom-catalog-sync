@@ -71,6 +71,30 @@ Ce PC ne possède pas encore de catalogue : il va le récupérer via la synchro.
 4. Copie manuellement le seul fichier `.lrcat` depuis `_SyncedCopy` vers `_NoSync_WorkingFiles` (le script exige sa présence comme garde-fou avant de tourner ; les 4 dossiers, eux, seront extraits automatiquement des archives au premier pull).
 5. Lance `start-lightroom.bat` : le pull extrait les 4 archives vers `_NoSync_WorkingFiles`, puis Lightroom se lance. À cette toute première ouverture sur cette machine, Lightroom ne connaît pas encore ce catalogue : ouvre-le via Fichier > Ouvrir un catalogue, en pointant le `.lrcat` dans `_NoSync_WorkingFiles`. Les fois suivantes, il s'ouvrira automatiquement.
 
+### À quoi ça ressemble une fois en place
+
+Exemple concret, avec un catalogue nommé `NomCatalogue` :
+
+```
+Lightroom\
+  start-lightroom.bat
+  _NoSync_WorkingFiles\
+    NomCatalogue.lrcat
+    NomCatalogue.lrcat-data\
+    NomCatalogue Previews.lrdata\
+    NomCatalogue Helper.lrdata\
+    NomCatalogue Sync.lrdata\
+    _CrashBackups\                    <- cree automatiquement, copies de securite
+  _SyncedCopy\
+    NomCatalogue.lrcat
+    NomCatalogue.lrcat-data.7z
+    NomCatalogue Previews.lrdata.7z
+    NomCatalogue Helper.lrdata.7z
+    NomCatalogue Sync.lrdata.7z
+```
+
+`_NoSync_WorkingFiles` contient les vrais fichiers bruts que Lightroom utilise directement : c'est là que vivent au quotidien ton vrai catalogue et ses 4 dossiers compagnons. `_SyncedCopy` est le seul dossier que ton outil de sync surveille : même `.lrcat`, mais les 4 dossiers compagnons y voyagent sous forme d'archives `.7z` (voir [Pourquoi des archives .7z](../README.fr.md#pourquoi-des-archives-7z) pour la raison). `_CrashBackups` apparaît tout seul dans `_NoSync_WorkingFiles` après le premier pull : rien à créer manuellement à cet endroit.
+
 ## Adapter le script à ton cas
 
 Toutes les variables à personnaliser sont regroupées en haut du script :
